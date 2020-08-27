@@ -9,8 +9,8 @@ const DirectionDispatch = new Map<string, Vector3>([
 
 export class Robot {
   position: Vector3;
-  constructor(navSeq: string[] = ['']) {
-    this.position = new Vector3();
+  constructor(position: Vector3 = new Vector3(), navSeq: string[] = ['']) {
+    this.position = position;
     navSeq.forEach((cmd) => this.navigate(DirectionDispatch[cmd]));
   }
   navigate(direction: Vector3): void {
