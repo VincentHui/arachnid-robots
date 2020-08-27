@@ -11,7 +11,7 @@ export class Robot {
   position: Vector3;
   constructor(position: Vector3 = new Vector3(), navSeq: string[] = ['']) {
     this.position = position;
-    navSeq.forEach((cmd) => this.navigate(DirectionDispatch[cmd]));
+    navSeq.forEach((cmd) => this.navigate(DirectionDispatch.get(cmd)));
   }
   navigate(direction: Vector3): void {
     this.position = this.position.add(direction);
