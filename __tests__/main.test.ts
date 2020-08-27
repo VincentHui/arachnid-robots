@@ -36,4 +36,10 @@ describe('Robot Navigation', () => {
     expect(Bot.position).toStrictEqual(new Vector3(-1, 5, 0));
     expect(Bot.fuel).toStrictEqual(24);
   });
+
+  it('MK3 propulsion with boost overheat', () => {
+    const Bot = new MK3(new Vector3(0, 0), 'FFF7L');
+    expect(Bot.position).toStrictEqual(new Vector3(-1, 2, 0));
+    expect(Bot.fuel).toStrictEqual(27);
+  });
 });
