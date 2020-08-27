@@ -15,4 +15,7 @@ export class Vector3 {
   public scalarMultiply(scalar: number): Vector3 {
     return new Vector3(this.x * scalar, this.y * scalar, this.z * scalar);
   }
+  public translateDirection(direction: Vector3, distance = 1): Vector3 {
+    return this.add(direction.scalarMultiply(distance));
+  }
 }
