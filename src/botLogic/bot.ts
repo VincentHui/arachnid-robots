@@ -65,10 +65,10 @@ export class MK3 extends Robot {
     const reg = /[A-Z][\d]?/g;
     cmds.match(reg).forEach((cmd) => {
       const dir = cmd.split('')[0];
-      const distance = Number(cmd.split('')[1]) || 1;
       const cmdDirection = DirectionDispatch.get(dir);
       if (!cmdDirection) return console.log('invalid cmd!');
-
+      const distance = Number(cmd.split('')[1]) || 1;
+      this.fuel -= distance;
       this.navigate(cmdDirection, distance);
     });
   }
