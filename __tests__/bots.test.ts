@@ -72,4 +72,18 @@ describe('Use Cases from emails from lab boys', () => {
     expect(Bot.position).toStrictEqual(new Vector3(3, 15, 0));
     expect(Bot.rotation).toStrictEqual(new Vector3(1, 0, 0));
   });
+
+  it('MK3 test 0,0 FFFFFF3FLFFFFFFR5FL', () => {
+    const Bot = new MK2(new Vector3(0, 0), 'FFFFFF3FLFFFFFFR5FL');
+    expect(Bot.position).toStrictEqual(new Vector3(4, 16, 0));
+    expect(Bot.rotation).toStrictEqual(new Vector3(-1, 0, 0));
+  });
+  it('MK3 test 4,3 FFFFFFFF5FRFFFFFF3FRFFFFFFLFFFFF5FFF5FFFFFFFLFFFFF', () => {
+    const Bot = new MK2(
+      new Vector3(4, 59),
+      'FFFFFFFF5FRFFFFFF3FRFFFFFFLFFFFF5FFF5FFFFFFFLFFFFF',
+    );
+    expect(Bot.position).toStrictEqual(new Vector3(4, 115, 0));
+    expect(Bot.rotation).toStrictEqual(new Vector3(0, 1, 0));
+  });
 });
