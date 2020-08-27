@@ -29,10 +29,10 @@ export class Robot {
 }
 
 export class MK1 extends Robot {
-  constructor(position: Vector3 = new Vector3(), navSeq: string[] = []) {
+  constructor(position: Vector3 = new Vector3(), cmds = '') {
     super();
     this.position = position;
-    navSeq.forEach((cmd) => {
+    cmds.split('').forEach((cmd) => {
       const cmdDirection = DirectionDispatch.get(cmd);
       if (!cmdDirection) return console.log('invalid cmd!');
       this.navigate(cmdDirection);
@@ -41,10 +41,10 @@ export class MK1 extends Robot {
 }
 
 export class MK2 extends Robot {
-  constructor(position: Vector3 = new Vector3(), navSeq: string[] = []) {
+  constructor(position: Vector3 = new Vector3(), cmds = '') {
     super();
     this.position = position;
-    navSeq.forEach((cmd) => {
+    cmds.split('').forEach((cmd) => {
       const cmdDirection = DirectionDispatch.get(cmd);
       if (!cmdDirection) return console.log('invalid cmd!');
       this.navigate(cmdDirection);
@@ -54,5 +54,21 @@ export class MK2 extends Robot {
     this.rotation = direction;
     const newPos = translateDirection(this.position, this.rotation, distance);
     this.position = CheckPos(newPos, this.position);
+  }
+}
+
+export class MK3 extends Robot {
+  fuel = 30;
+  constructor(position: Vector3 = new Vector3(), cmds = '') {
+    super();
+    this.position = position;
+    const reg = /[A-Z][\d]?/g;
+    cmds.match(reg).forEach((cmd) => {
+      console.log(cmd);
+      //   const cmdDirection = DirectionDispatch.get(cmd);
+      //   if (!cmdDirection) return console.log('invalid cmd!');
+      //   const fowardValue = this.parseForwardCmd(cmd);
+      //   this.navigate(cmdDirection, fowardValue);
+    });
   }
 }
