@@ -64,11 +64,12 @@ export class MK3 extends Robot {
     this.position = position;
     const reg = /[A-Z][\d]?/g;
     cmds.match(reg).forEach((cmd) => {
-      console.log(cmd);
-      //   const cmdDirection = DirectionDispatch.get(cmd);
-      //   if (!cmdDirection) return console.log('invalid cmd!');
-      //   const fowardValue = this.parseForwardCmd(cmd);
-      //   this.navigate(cmdDirection, fowardValue);
+      const dir = cmd.split('')[0];
+      const distance = Number(cmd.split('')[1]) || 1;
+      const cmdDirection = DirectionDispatch.get(dir);
+      if (!cmdDirection) return console.log('invalid cmd!');
+
+      this.navigate(cmdDirection, distance);
     });
   }
 }

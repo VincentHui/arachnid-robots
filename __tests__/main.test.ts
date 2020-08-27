@@ -33,9 +33,6 @@ describe('Robot Navigation', () => {
 
   it('MK3 propulsion', () => {
     const Bot = new MK3(new Vector3(0, 0), 'FFF3L');
-    expect(Bot.position).toStrictEqual(new Vector3(0, 0, 0));
-    // expect(Bot.rotation).toStrictEqual(new Vector3(1, 0, 0));
-    // Bot.navigate(new Vector3(0, -1, 0));
-    // expect(Bot.rotation).toStrictEqual(new Vector3(0, -1, 0));
+    expect(Bot.position).toStrictEqual(new Vector3(-1, 5, 0));
   });
 });
