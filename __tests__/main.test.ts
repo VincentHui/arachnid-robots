@@ -1,5 +1,5 @@
 import { Robot } from '../src/botLogic/bot';
-import { Vector3 } from '../src/botLogic/navigation';
+import { Vector3 } from '../src/botLogic/Vector3';
 
 describe('Robot Navigation', () => {
   it('FFLRB cmd at position (0,0)', () => {
