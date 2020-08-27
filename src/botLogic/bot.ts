@@ -11,17 +11,28 @@ const DirectionDispatch = new Map<string, Vector3>([
 export class Robot {
   position: Vector3;
   rotation: Vector3 = new Vector3(0, 1, 0);
-  constructor(position: Vector3 = new Vector3(), navSeq: string[] = []) {
+  willCheck = false;
+  constructor(
+    position: Vector3 = new Vector3(),
+    navSeq: string[] = [],
+    checkBoundry = true,
+  ) {
     this.position = position;
+    this.willCheck = checkBoundry;
     navSeq.forEach((cmd) => {
       const cmdDirection = DirectionDispatch.get(cmd);
       if (!cmdDirection) return console.log('invalid cmd!');
       this.navigate(cmdDirection);
     });
   }
+
+  CheckNegativePos(newPos: Vector3): Vector3 {
+    return Check(newPos) ? newPos : this.position;
+  }
+
   navigate(direction: Vector3, distance = 1): void {
     this.rotation = direction;
     const newPos = this.position.add(direction.scalarMultiply(distance));
-    this.position = Check(newPos) ? newPos : this.position;
+    this.position = this.willCheck ? this.CheckNegativePos(newPos) : newPos;
   }
 }
