@@ -14,7 +14,8 @@ export class Robot {
     this.position = position;
     navSeq.forEach((cmd) => this.navigate(DirectionDispatch.get(cmd)));
   }
-  navigate(direction: Vector3): void {
-    this.position = this.position.add(direction);
+  navigate(direction: Vector3, distance = 1): void {
+    this.rotation = direction;
+    this.position = this.position.add(direction.scalarMultiply(distance));
   }
 }
