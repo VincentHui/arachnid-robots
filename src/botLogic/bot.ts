@@ -1,5 +1,5 @@
 import { Vector3 } from './Vector3';
-import { Check } from './boundryCheck';
+import { Check } from './boundaryCheck';
 
 const DirectionDispatch = new Map<string, Vector3>([
   ['F', new Vector3(0, 1, 0)],
@@ -15,10 +15,10 @@ export class Robot {
   constructor(
     position: Vector3 = new Vector3(),
     navSeq: string[] = [],
-    checkBoundry = true,
+    checkBoundary = true,
   ) {
     this.position = position;
-    this.willCheck = checkBoundry;
+    this.willCheck = checkBoundary;
     navSeq.forEach((cmd) => {
       const cmdDirection = DirectionDispatch.get(cmd);
       if (!cmdDirection) return console.log('invalid cmd!');
