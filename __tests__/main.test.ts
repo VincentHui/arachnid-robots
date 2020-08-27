@@ -47,3 +47,29 @@ describe('Robot Navigation', () => {
     expect(Bot.fuel).toStrictEqual(27);
   });
 });
+
+describe('Use Cases from emails from lab boys', () => {
+  it('MK1 test 0,0 FRFRFFFFFFFLLLLFFFFFRFFFFLFFLRRF', () => {
+    const Bot = new MK2(new Vector3(0, 0), 'FRFRFFFFFFFLLLLFFFFFRFFFFLFFLRRF');
+    expect(Bot.position).toStrictEqual(new Vector3(2, 21, 0));
+    expect(Bot.rotation).toStrictEqual(new Vector3(0, 1, 0));
+  });
+
+  it('MK1 test 3,6 FFFFFFFFRRRRRRRFFFFLLLBBRRRRRLLLLLLLLLRFFF', () => {
+    const Bot = new MK2(
+      new Vector3(3, 6),
+      'FFFFFFFFRRRRRRRFFFFLLLBBRRRRRLLLLLLLLLRFFF',
+    );
+    expect(Bot.position).toStrictEqual(new Vector3(4, 19, 0));
+    expect(Bot.rotation).toStrictEqual(new Vector3(0, 1, 0));
+  });
+
+  it('MK1 test 0,7, RRRRRRRRFFFFFFFFFFFLLLBBBBBRRRLLLLLFFLR', () => {
+    const Bot = new MK2(
+      new Vector3(0, 7),
+      'RRRRRRRRFFFFFFFFFFFLLLBBBBBRRRLLLLLFFLR',
+    );
+    expect(Bot.position).toStrictEqual(new Vector3(3, 15, 0));
+    expect(Bot.rotation).toStrictEqual(new Vector3(1, 0, 0));
+  });
+});
