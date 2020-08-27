@@ -8,6 +8,10 @@ const DirectionDispatch = new Map<string, Vector3>([
   ['R', new Vector3(1, 0, 0)],
 ]);
 
+const CheckPos = (newPos: Vector3, oldPos: Vector3) => {
+  return Check(newPos) ? newPos : oldPos;
+};
+
 export class Robot {
   position: Vector3;
   rotation: Vector3 = new Vector3(0, 1, 0);
@@ -26,13 +30,9 @@ export class Robot {
     });
   }
 
-  CheckNegativePos(newPos: Vector3): Vector3 {
-    return Check(newPos) ? newPos : this.position;
-  }
-
   navigate(direction: Vector3, distance = 1): void {
     this.rotation = direction;
     const newPos = this.position.add(direction.scalarMultiply(distance));
-    this.position = this.willCheck ? this.CheckNegativePos(newPos) : newPos;
+    this.position = this.willCheck ? CheckPos(newPos, this.position) : newPos;
   }
 }
