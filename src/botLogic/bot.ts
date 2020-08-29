@@ -13,16 +13,11 @@ const cmdsParser = (
   callback: (dir: Vector3, dist: number) => void,
   cmdTable = DirectionDispatch,
 ) => {
-  const reg = /[A-Z][\d]?/g;
-  const matches = cmds.match(reg) || [];
-  matches.forEach((cmd) => {
-    const dir = cmd.split('')[0];
+  (cmds.match(/[A-Z][\d]?/g) || []).forEach((cmd) => {
+    const [dir, distance] = cmd.split('');
     const cmdDirection = cmdTable.get(dir);
     if (!cmdDirection) return console.log('invalid cmd!');
-    const distance = Number(cmd.split('')[1]) || 1;
-    if (distance > 5) return console.log('overheat');
-
-    callback(cmdDirection, distance);
+    callback(cmdDirection, Number(distance) || 1);
   });
 };
 
@@ -67,6 +62,7 @@ export class MK3 extends Robot {
     super();
     this.position = position;
     cmdsParser(cmds, (direction, distance) => {
+      if (distance > 5) return console.log('overheat');
       this.navigate(direction, distance);
       this.fuel -= distance;
     });
